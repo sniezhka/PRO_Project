@@ -1,0 +1,6 @@
+﻿  Source.cpp
+E:\PRO\Project1\Project1\Source.cpp(15,29): warning C4101: 'ierr': unreferenced local variable
+E:\PRO\Project1\Project1\Source.cpp(15,15): warning C4101: 'root_process': unreferenced local variable
+E:\PRO\Project1\Project1\Source.cpp(16,16): warning C4101: 'status': unreferenced local variable
+E:\PRO\Project1\Project1\Source.cpp(43,42): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+  Project1.vcxproj -> E:\PRO\Project1\x64\Debug\Project1.exe
