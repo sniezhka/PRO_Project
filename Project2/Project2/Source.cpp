@@ -3,7 +3,6 @@
 #include <iostream>
 #include <cstdlib>
 #include <numeric>
-#include <ctime> 
 #include <cmath>
 using namespace std;
 int main(int argc, char** argv)
@@ -20,12 +19,12 @@ int main(int argc, char** argv)
 
 	if (myrank == 0)
 	{
-		MPI_Send(&number, 10, MPI_INT, 1, TAG, MPI_COMM_WORLD);// стандартний
-		MPI_Recv(&number, 10, MPI_INT, 3, TAG, MPI_COMM_WORLD, &status);//стандартний
+		MPI_Send(&number, 10, MPI_INT, 1, TAG, MPI_COMM_WORLD);// СЃС‚Р°РЅРґР°СЂС‚РЅРёР№
+		MPI_Recv(&number, 10, MPI_INT, 3, TAG, MPI_COMM_WORLD, &status);//СЃС‚Р°РЅРґР°СЂС‚РЅРёР№
 		if (number < 569)
 		{
 			number *= 8;
-			MPI_Send(&number, 10, MPI_INT, 1, TAG, MPI_COMM_WORLD);// стандартний
+			MPI_Send(&number, 10, MPI_INT, 1, TAG, MPI_COMM_WORLD);// СЃС‚Р°РЅРґР°СЂС‚РЅРёР№
 		}
 		else
 		cout << "Number-0: " << number << endl;
@@ -33,29 +32,29 @@ int main(int argc, char** argv)
 		buffer = (char*)malloc(buffsize + MPI_BSEND_OVERHEAD);
 		MPI_Buffer_attach(buffer, buffsize + MPI_BSEND_OVERHEAD);
 		buffer = (char*)"Everyone is the creator of one's own fate.";
-		MPI_Bsend(&buffer, buffsize, MPI_CHAR, 1, TAG, MPI_COMM_WORLD);//буферний
+		MPI_Bsend(&buffer, buffsize, MPI_CHAR, 1, TAG, MPI_COMM_WORLD);//Р±СѓС„РµСЂРЅРёР№
 		MPI_Buffer_detach(&buffer, &buffsize);
-		MPI_Recv(&buffer, buffsize, MPI_CHAR, 3, TAG, MPI_COMM_WORLD, &status);//буферний
+		MPI_Recv(&buffer, buffsize, MPI_CHAR, 3, TAG, MPI_COMM_WORLD, &status);//Р±СѓС„РµСЂРЅРёР№
 		cout << "received0: " << buffer << endl;
 
 		strcpy(message, "Synchronous exchange");
 		for (int i = 1; i < size; i += 2)
 		{
-			MPI_Ssend(&message, 25, MPI_CHAR, i, TAG, MPI_COMM_WORLD);//синхронний
+			MPI_Ssend(&message, 25, MPI_CHAR, i, TAG, MPI_COMM_WORLD);//СЃРёРЅС…СЂРѕРЅРЅРёР№
 		}
-		MPI_Recv(&message, 25, MPI_CHAR, 1, TAG, MPI_COMM_WORLD, &status);//синхронний
+		MPI_Recv(&message, 25, MPI_CHAR, 1, TAG, MPI_COMM_WORLD, &status);//СЃРёРЅС…СЂРѕРЅРЅРёР№
 		cout << "Rank0-1" << " Message= " << message << endl;
-		MPI_Recv(&message, 25, MPI_CHAR, 3, TAG, MPI_COMM_WORLD, &status);//синхронний
+		MPI_Recv(&message, 25, MPI_CHAR, 3, TAG, MPI_COMM_WORLD, &status);//СЃРёРЅС…СЂРѕРЅРЅРёР№
 		cout << "Rank0-3" << " Message= " << message << endl;
 
 	}
 	else if (myrank == 1)
 	{
-		MPI_Recv(&number, 10, MPI_INT, 0, TAG, MPI_COMM_WORLD, &status);//стандартний
+		MPI_Recv(&number, 10, MPI_INT, 0, TAG, MPI_COMM_WORLD, &status);
 		if (number < 569) 
 		{
 			number *=8;
-			MPI_Send(&number, 10, MPI_INT, 2, TAG, MPI_COMM_WORLD);// стандартний
+			MPI_Send(&number, 10, MPI_INT, 2, TAG, MPI_COMM_WORLD);// СЃС‚Р°РЅРґР°СЂС‚РЅРёР№
 		}
 		else
 		cout << "Number-1: " << number << endl;
@@ -63,25 +62,25 @@ int main(int argc, char** argv)
 
 		buffer = (char*)malloc(buffsize + MPI_BSEND_OVERHEAD);
 		MPI_Buffer_attach(buffer, buffsize + MPI_BSEND_OVERHEAD);
-		MPI_Recv(&buffer, buffsize, MPI_CHAR, 0, TAG, MPI_COMM_WORLD, &status);//буферний
+		MPI_Recv(&buffer, buffsize, MPI_CHAR, 0, TAG, MPI_COMM_WORLD, &status);//Р±СѓС„РµСЂРЅРёР№
 		cout << "received1: " << buffer << endl;
-		MPI_Bsend(&buffer, buffsize, MPI_CHAR, 2, TAG, MPI_COMM_WORLD);//буферний
+		MPI_Bsend(&buffer, buffsize, MPI_CHAR, 2, TAG, MPI_COMM_WORLD);//Р±СѓС„РµСЂРЅРёР№
 		MPI_Buffer_detach(&buffer, &buffsize);
 
-		MPI_Recv(&message, 25, MPI_CHAR, 0, TAG, MPI_COMM_WORLD, &status);//синхронний
+		MPI_Recv(&message, 25, MPI_CHAR, 0, TAG, MPI_COMM_WORLD, &status);//СЃРёРЅС…СЂРѕРЅРЅРёР№
 		cout << "Rank1-0" << " Message= " << message << endl;
 		for (int i = 0; i < size; i += 2)
 		{
-			MPI_Ssend(&message, 25, MPI_CHAR, i, TAG, MPI_COMM_WORLD);//синхронний
+			MPI_Ssend(&message, 25, MPI_CHAR, i, TAG, MPI_COMM_WORLD);//СЃРёРЅС…СЂРѕРЅРЅРёР№
 		}
 	}
 	else if (myrank == 2)
 	{
-		MPI_Recv(&number, 10, MPI_INT, 1, TAG, MPI_COMM_WORLD, &status);//стандартний
+		MPI_Recv(&number, 10, MPI_INT, 1, TAG, MPI_COMM_WORLD, &status);//СЃС‚Р°РЅРґР°СЂС‚РЅРёР№
 		if (number < 569)
 		{
 			number *=8;
-			MPI_Send(&number, 10, MPI_INT, 3, TAG, MPI_COMM_WORLD);// стандартний
+			MPI_Send(&number, 10, MPI_INT, 3, TAG, MPI_COMM_WORLD);// СЃС‚Р°РЅРґР°СЂС‚РЅРёР№
 		}
 		else
 			cout << "Number-2: " << number << endl;
@@ -89,23 +88,23 @@ int main(int argc, char** argv)
 
 		buffer = (char*)malloc(buffsize + MPI_BSEND_OVERHEAD);
 		MPI_Buffer_attach(buffer, buffsize + MPI_BSEND_OVERHEAD);
-		MPI_Recv(&buffer, buffsize, MPI_CHAR, 1, TAG, MPI_COMM_WORLD, &status);//буферний
+		MPI_Recv(&buffer, buffsize, MPI_CHAR, 1, TAG, MPI_COMM_WORLD, &status);//Р±СѓС„РµСЂРЅРёР№
 		cout << "received2: " << buffer << endl;
-		MPI_Bsend(&buffer, buffsize, MPI_CHAR, 3, TAG, MPI_COMM_WORLD);//буферний
+		MPI_Bsend(&buffer, buffsize, MPI_CHAR, 3, TAG, MPI_COMM_WORLD);//Р±СѓС„РµСЂРЅРёР№
 		MPI_Buffer_detach(&buffer, &buffsize);
 
-		MPI_Recv(&message, 25, MPI_CHAR, 1, TAG, MPI_COMM_WORLD, &status);//синхронний
+		MPI_Recv(&message, 25, MPI_CHAR, 1, TAG, MPI_COMM_WORLD, &status);//СЃРёРЅС…СЂРѕРЅРЅРёР№
 		cout << "Rank2-1" << " Message= " << message << endl;
-		MPI_Recv(&message, 25, MPI_CHAR, 3, TAG, MPI_COMM_WORLD, &status);//синхронний
+		MPI_Recv(&message, 25, MPI_CHAR, 3, TAG, MPI_COMM_WORLD, &status);//СЃРёРЅС…СЂРѕРЅРЅРёР№
 		cout << "Rank2-3" << " Message= " << message << endl;
 	}
 	else if (myrank == 3)
 	{
-		MPI_Recv(&number, 10, MPI_INT, 2, TAG, MPI_COMM_WORLD, &status);//стандартний
+		MPI_Recv(&number, 10, MPI_INT, 2, TAG, MPI_COMM_WORLD, &status);//СЃС‚Р°РЅРґР°СЂС‚РЅРёР№
 		if (number < 569)
 		{
 			number *=8;
-			MPI_Send(&number, 10, MPI_INT, 0, TAG, MPI_COMM_WORLD);// стандартний
+			MPI_Send(&number, 10, MPI_INT, 0, TAG, MPI_COMM_WORLD);// СЃС‚Р°РЅРґР°СЂС‚РЅРёР№
 		}
 		else
 		cout << "Number-3: " << number << endl;
@@ -114,16 +113,16 @@ int main(int argc, char** argv)
 
 		buffer = (char*)malloc(buffsize + MPI_BSEND_OVERHEAD);
 		MPI_Buffer_attach(buffer, buffsize + MPI_BSEND_OVERHEAD);
-		MPI_Recv(&buffer, buffsize, MPI_CHAR, 2, TAG, MPI_COMM_WORLD, &status);//буферний
+		MPI_Recv(&buffer, buffsize, MPI_CHAR, 2, TAG, MPI_COMM_WORLD, &status);//Р±СѓС„РµСЂРЅРёР№
 		cout << "received3: " << buffer << endl;
-		MPI_Bsend(&buffer, buffsize, MPI_CHAR, 0, TAG, MPI_COMM_WORLD);//буферний
+		MPI_Bsend(&buffer, buffsize, MPI_CHAR, 0, TAG, MPI_COMM_WORLD);//Р±СѓС„РµСЂРЅРёР№
 		MPI_Buffer_detach(&buffer, &buffsize);
 
-		MPI_Recv(&message, 25, MPI_CHAR, 0, TAG, MPI_COMM_WORLD, &status);//синхронний
+		MPI_Recv(&message, 25, MPI_CHAR, 0, TAG, MPI_COMM_WORLD, &status);//СЃРёРЅС…СЂРѕРЅРЅРёР№
 		cout << "Rank3-0" << " Message= " << message << endl;
 		for (int i = 0; i < size; i += 2)
 		{
-			MPI_Ssend(&message, 25, MPI_CHAR, i, TAG, MPI_COMM_WORLD);//синхронний
+			MPI_Ssend(&message, 25, MPI_CHAR, i, TAG, MPI_COMM_WORLD);//СЃРёРЅС…СЂРѕРЅРЅРёР№
 		}
 	}
 
