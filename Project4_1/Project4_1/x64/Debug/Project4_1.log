@@ -1,0 +1,10 @@
+﻿  Source.cpp
+c1xx : warning C4199: two-phase name lookup is not supported for C++/CLI, C++/CX, or OpenMP; use /Zc:twoPhase-
+d:\pro\project4_1\project4_1\source.cpp(48): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+d:\pro\project4_1\project4_1\source.cpp(89): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+d:\pro\project4_1\project4_1\source.cpp(102): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+d:\pro\project4_1\project4_1\source.cpp(125): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+d:\pro\project4_1\project4_1\source.cpp(145): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+d:\pro\project4_1\project4_1\source.cpp(64): warning C4101: 'p1': unreferenced local variable
+d:\pro\project4_1\project4_1\source.cpp(64): warning C4101: 'p2': unreferenced local variable
+  Project4_1.vcxproj -> D:\PRO\Project4_1\x64\Debug\Project4_1.exe
