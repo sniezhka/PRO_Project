@@ -36,6 +36,10 @@ int main(int argc, char *argv[])
 
 void  dataExchange( MPI_Comm comm, int numberOfProcess, int s, int r)
 {
+        // c, s, r and so on... o p r s t - such names are acceptable, for example, for counters, temporary variables with short lifespan,
+        // otherwise it's a good style when each variable has meaningful name, like numberOfProcess, etc.
+        // This helps to read code faster.
+        // Because it's hard to keep in mind what means s, what means r and so on...
 	MPI_Status status;
 	string group;
 	int c;
@@ -81,6 +85,10 @@ void level_1(MPI_Group world_group, MPI_Comm dub_comm_world,  int rank, int size
 		MPI_Comm_create(dub_comm_world, group_2, &b_comm_world);//create
 		MPI_Group_rank(group_2, &rank_2);
 		MPI_Group_size(group_2, &size_2);
+
+                // Seems like this big if() scope and the next one are doing almost the same work,
+                // except rank numbers and resulting strings exchange at the end.
+                // It is better to move similar functionality out to separate routine, than just make copy-paste.
 		if (size_1 != 0) {
 			if (rank_1==0)
 			{
@@ -91,6 +99,8 @@ void level_1(MPI_Group world_group, MPI_Comm dub_comm_world,  int rank, int size
 				MPI_Ssend(const_cast<char*>(group1.c_str()), c, MPI_CHAR, 1, 0, world_comm);
 				group1.clear();
 
+                                // The same as the previous note: next 5 lines can be moved out to separate function, smth like receiveString()
+                                // This helps to keep code clean and easier for reading.
 				MPI_Recv(&c, 1, MPI_INT, 3, 10, world_comm, &status);
 				vector <char> str;
 				str.resize(c);
