@@ -1,0 +1,4 @@
+﻿  Project5.cpp
+c1xx : warning C4199: two-phase name lookup is not supported for C++/CLI, C++/CX, or OpenMP; use /Zc:twoPhase-
+d:\pro\project5\project5\project5.cpp(40): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+  Project5.vcxproj -> D:\PRO\Project5\Debug\Project5.exe
