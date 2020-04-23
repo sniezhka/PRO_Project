@@ -1,0 +1,4 @@
+﻿  Calculation.cpp
+c1xx : warning C4199: two-phase name lookup is not supported for C++/CLI, C++/CX, or OpenMP; use /Zc:twoPhase-
+d:\pro\calculation\calculation\calculation.cpp(17): warning C4018: '<': signed/unsigned mismatch
+  Calculation.vcxproj -> D:\PRO\Calculation\Debug\Calculation.exe
