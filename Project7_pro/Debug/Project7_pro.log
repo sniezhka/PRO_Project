@@ -1,0 +1,22 @@
+﻿  Project7_pro.cpp
+C:\Program Files (x86)\Intel\Composer XE\compiler\include\cilk/reducer.h(851): warning #473: returning reference to local temporary
+        const void* const & initial_this() const { return m_initialThis; }
+                                                          ^
+  
+D:\PRO\Project7_pro\Project7_pro\Project7_pro.cpp(7): warning #592: variable "sum" is used before its value is set
+    	sum += 1;
+    	^
+  
+D:\PRO\Project7_pro\Project7_pro\Project7_pro.cpp(12): warning #592: variable "sum" is used before its value is set
+    	sum += 1;
+    	^
+  
+D:\PRO\Project7_pro\Project7_pro\Project7_pro.cpp(13): warning #3946: "_Cilk_spawn" has been deprecated, and will be removed in a future release.  Please refer to release notes for details and recommended alternatives
+    	cilk_spawn addsum();
+    	^
+  
+D:\PRO\Project7_pro\Project7_pro\Project7_pro.cpp(17): error : expression must have class type
+    	return sum.get_value();
+    	       ^
+  
+  compilation aborted for Project7_pro.cpp (code 2)
