@@ -1,0 +1,9 @@
+﻿  Projects_z7.cpp
+D:\PRO\Projects_z7\Projects_z7\Projects_z7.cpp(12): warning #3947: "_Cilk_for" has been deprecated, and will be removed in a future release.  Please refer to release notes for details and recommended alternatives
+    	cilk_for (int i = 0; i < n; i++){
+    	^
+  
+D:\PRO\Projects_z7\Projects_z7\Projects_z7.cpp(44): warning #3946: "_Cilk_spawn" has been deprecated, and will be removed in a future release.  Please refer to release notes for details and recommended alternatives
+    	cilk_spawn MatrixRandom(A, 10);
+    	^
+  
